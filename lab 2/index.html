@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №6</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+    <h1>Лабораторная работа №6. DOM и события</h1>
+</header>
+
+<div class="container">
+
+    <div class="box">
+        <h2>Светлая / темная тема</h2>
+        <p class="level">Вариант 5 • базовый уровень</p>
+
+        <p>Сейчас включена: <b id="themeName">светлая</b></p>
+        <button id="themeBtn">🌙 Включить темную</button>
+        <p class="hint">Можно нажать клавишу <kbd>T</kbd></p>
+        <p class="small" id="themeCount">Переключений: 0</p>
+    </div>
+
+    <div class="box">
+        <h2>Модальное окно</h2>
+        <p class="level">Вариант 12 • средний уровень</p>
+
+        <p>Окно закрывается кнопкой, кликом вне окна или клавишей <kbd>Esc</kbd>.</p>
+        <button id="openModalBtn">Открыть окно</button>
+
+        <div class="log">
+            <b>История:</b>
+            <ul id="modalLog"></ul>
+        </div>
+    </div>
+
+    <div class="box game-box">
+        <h2>Поймай объект</h2>
+        <p class="level">Вариант 20 • повышенный уровень</p>
+
+        <div class="game-info">
+            <span>Попаданий: <b id="hits">0</b> / <span id="goalText">10</span></span>
+            <span>Промахов: <b id="misses">0</b></span>
+            <span>Время: <b id="time">0.0</b> с</span>
+        </div>
+
+        <div id="field">
+            <div id="target"></div>
+            <p id="gameMessage">Нажмите «Старт», чтобы начать</p>
+        </div>
+
+        <div class="game-controls">
+            <label>
+                Цель:
+                <select id="goalSelect">
+                    <option value="5">5</option>
+                    <option value="10" selected>10</option>
+                       <option value="15">15</option>
+                </select>
+            </label>
+            <button id="startBtn">Старт</button>
+        </div>
+
+        <p class="small">Лучшее время: <b id="best">—</b></p>
+    </div>
+
+</div>
+
+<div id="overlay" class="overlay hidden">
+    <div class="modal">
+        <button id="closeX" class="close-x">✕</button>
+        <h3>Обратная связь</h3>
+        <p>Оставьте короткий отзыв о сайте</p>
+        <input type="text" id="feedbackInput" placeholder="Ваш отзыв">
+        <p id="feedbackMsg" class="feedback-msg"></p>
+        <div class="modal-buttons">
+            <button id="sendBtn">Отправить</button>
+            <button id="closeModalBtn" class="gray">Закрыть</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

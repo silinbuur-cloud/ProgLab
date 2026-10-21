@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №7 — SPA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1 class="page-title">Лабораторная работа №7. SPA без фреймворков</h1>
+
+<section class="app" id="cafeApp">
+    <div class="app-head">
+        <h2>☕ Кафе «Уют»</h2>
+        <span class="level">Вариант 4 • базовый</span>
+    </div>
+
+    <nav class="tabs">
+        <button class="tab" data-tab="menu">Меню</button>
+        <button class="tab" data-tab="sales">Акции</button>
+        <button class="tab" data-tab="address">Адрес</button>
+    </nav>
+
+    <main class="content" id="cafeContent" aria-live="polite"></main>
+</section>
+
+<section class="app" id="booksApp">
+    <div class="app-head">
+        <h2>📚 Каталог книг</h2>
+        <span class="level">Вариант 8 • средний</span>
+    </div>
+
+    <nav class="tabs">
+        <button class="tab" data-tab="catalog">Каталог</button>
+        <button class="tab" data-tab="favorites">Избранное <span class="badge" id="favBadge">0</span></button>
+        <button class="tab" data-tab="library">О библиотеке</button>
+    </nav>
+
+    <main class="content" id="booksContent" aria-live="polite"></main>
+</section>
+
+<section class="app" id="ordersApp">
+    <div class="app-head">
+        <h2>📦 Панель заказов</h2>
+        <span class="level">Вариант 18 • повышенный</span>
+    </div>
+
+    <nav class="tabs">
+        <button class="tab" data-tab="new">Новые <span class="badge" id="countNew">0</span></button>
+        <button class="tab" data-tab="work">В работе <span class="badge" id="countWork">0</span></button>
+        <button class="tab" data-tab="done">Готовые <span class="badge" id="countDone">0</span></button>
+    </nav>
+
+    <form class="order-form" id="orderForm">
+        <input type="text" id="clientInput" placeholder="Имя клиента">
+        <input type="text" id="itemInput" placeholder="Что заказал">
+        <input type="number" id="sumInput" placeholder="Сумма, ₸">
+        <button type="submit">Добавить заказ</button>
+    </form>
+    <p class="error" id="orderError"></p>
+
+    <main class="content" id="ordersContent" aria-live="polite"></main>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

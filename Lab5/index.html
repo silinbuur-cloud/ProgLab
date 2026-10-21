@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №5</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            margin: 0;
+            padding: 30px 15px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin: 0 0 25px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .box {
+            background: white;
+            width: 360px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .box h2 {
+            margin-top: 0;
+            font-size: 21px;
+        }
+
+        .level {
+            font-size: 13px;
+            color: #666;
+            margin: -8px 0 15px;
+        }
+
+        .row {
+            display: flex;
+            gap: 8px;
+        }
+
+        input {
+            padding: 8px;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            min-width: 0;
+        }
+
+        input.error {
+            border-color: #dc2626;
+        }
+
+        button {
+            padding: 8px 14px;
+            font-size: 15px;
+            border: none;
+            border-radius: 5px;
+            background: #3b82f6;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2563eb;
+        }
+
+        select {
+            padding: 4px;
+            font-size: 14px;
+        }
+
+        .message {
+            color: #dc2626;
+            font-size: 14px;
+            min-height: 18px;
+            margin: 8px 0;
+        }
+
+        .empty {
+            color: #888;
+            font-style: italic;
+        }
+
+        .red-btn {
+            background: #ef4444;
+        }
+
+        .red-btn:hover {
+            background: #dc2626;
+        }
+
+        #counterValue {
+            font-size: 64px;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0 15px;
+        }
+
+        #counterValue.positive {
+            color: #16a34a;
+        }
+
+        #counterValue.negative {
+            color: #dc2626;
+        }
+
+        .counter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .counter-buttons button {
+            font-size: 18px;
+            padding: 10px 18px;
+        }
+
+        #resetBtn {
+            background: #6b7280;
+            font-size: 15px;
+        }
+
+        .step {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 15px;
+        }
+
+        .history {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .history li {
+            padding: 2px 0;
+        }
+
+        #shopInput {
+            flex: 1;
+        }
+
+        #shopList {
+            padding-left: 22px;
+        }
+
+        #shopList li {
+            padding: 6px 0;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+
+        #shopList li.bought {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        #clearBtn {
+            margin-top: 15px;
+        }
+
+        #expName {
+            flex: 2;
+        }
+
+        #expAmount {
+            flex: 1;
+            width: 70px;
+        }
+
+        .sort {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        #expList {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #expList li {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        #expList .sum {
+            font-weight: bold;
+            margin-left: auto;
+            margin-right: 12px;
+        }
+
+        #expList .red-btn {
+            padding: 4px 9px;
+            font-size: 13px;
+        }
+
+        .total {
+            margin-top: 15px;
+            font-size: 18px;
+        }
+
+        .stats {
+            font-size: 14px;
+            color: #555;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1 class="page-title">Лабораторная работа №5. JavaScript и DOM</h1>
+
+<div class="container">
+
+    <div class="box">
+        <h2>Счетчик</h2>
+        <p class="level">Вариант 3 • базовый уровень</p>
+
+        <div id="counterValue">0</div>
+
+        <div class="counter-buttons">
+            <button id="minusBtn">−</button>
+            <button id="resetBtn">Сброс</button>
+            <button id="plusBtn">+</button>
+        </div>
+
+        <div class="step">
+            Шаг:
+            <select id="stepSelect">
+                <option value="1">1</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+            </select>
+        </div>
+
+        <div class="history">
+            <b>Последние действия:</b>
+            <ul id="historyList"></ul>
+        </div>
+    </div>
+
+    <div class="box">
+        <h2>Список покупок</h2>
+        <p class="level">Вариант 10 • средний уровень</p>
+
+        <div class="row">
+            <input type="text" id="shopInput" placeholder="Например, молоко">
+            <button id="shopAddBtn">Добавить</button>
+        </div>
+
+        <p class="message" id="shopMessage"></p>
+
+        <ol id="shopList"></ol>
+        <p id="shopInfo" class="empty">Список пуст</p>
+
+        <button id="clearBtn" class="red-btn">Очистить список</button>
+    </div>
+
+    <div class="box">
+        <h2>Мои расходы</h2>
+        <p class="level">Вариант 20 • повышенный уровень</p>
+
+        <div class="row">
+            <input type="text" id="expName" placeholder="На что потратил">
+            <input type="number" id="expAmount" placeholder="Сумма">
+            <button id="expAddBtn">+</button>
+        </div>
+
+        <p class="message" id="expMessage"></p>
+
+        <div class="sort">
+            Сортировка:
+            <select id="sortSelect">
+                <option value="new">сначала новые</option>
+                <option value="big">сначала дорогие</option>
+                <option value="small">сначала дешевые</option>
+            </select>
+        </div>
+
+        <ul id="expList"></ul>
+
+        <div class="total">Итого: <b id="expTotal">0</b> ₸</div>
+        <div class="stats" id="expStats"></div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
