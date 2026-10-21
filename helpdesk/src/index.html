@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelpDesk — заявки техподдержки</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">🛠️ HelpDesk</div>
+        <div class="header-stats">
+            <span>Открыто: <b id="hdrOpen">0</b></span>
+            <span class="overdue-text">Просрочено: <b id="hdrOverdue">0</b></span>
+            <span>Всего: <b id="hdrTotal">0</b></span>
+        </div>
+    </header>
+
+    <nav class="tabs">
+        <button class="tab" data-tab="list">Заявки</button>
+        <button class="tab" data-tab="create">+ Новая заявка</button>
+        <button class="tab" data-tab="stats">Статистика</button>
+    </nav>
+
+    <main class="page">
+
+        <section class="view" id="view-list">
+            <div class="toolbar">
+                <input type="search" id="searchInput" placeholder="Поиск: номер, тема, клиент, телефон...">
+                <select id="statusFilter">
+                    <option value="all">Все статусы</option>
+                </select>
+                <select id="priorityFilter">
+                    <option value="all">Все приоритеты</option>
+                </select>
+                <select id="sortSelect">
+                    <option value="new">Сначала новые</option>
+                    <option value="old">Сначала старые</option>
+                    <option value="priority">По приоритету</option>
+                    <option value="deadline">По сроку SLA</option>
+                </select>
+                <button id="exportBtn" class="btn gray">Экспорт CSV</button>
+            </div>
+
+            <p class="found" id="foundText"></p>
+            <div id="ticketList" class="ticket-list"></div>
+        </section>
+
+        <section class="view" id="view-create">
+            <form id="ticketForm" class="form" novalidate>
+                <h2>Новая заявка</h2>
+
+                <label>
+                    Тема обращения
+                    <input type="text" name="title" maxlength="120" placeholder="Например: Не приходит код подтверждения">
+                    <span class="field-error" data-for="title"></span>
+                </label>
+
+                <label>
+                    Описание проблемы
+                    <textarea name="description" rows="4" placeholder="Что случилось, когда, что уже пробовали сделать"></textarea>
+                    <span class="field-error" data-for="description"></span>
+                </label>
+
+                <div class="two-cols">
+                    <label>
+                        Имя клиента
+                        <input type="text" name="client" placeholder="Айгерим">
+                        <span class="field-error" data-for="client"></span>
+                    </label>
+
+                    <label>
+                        Email или телефон
+                        <input type="text" name="contact" placeholder="+77011234567">
+                        <span class="field-error" data-for="contact"></span>
+                    </label>
+                </div>
+
+                <div class="two-cols">
+                    <label>
+                        Категория
+                        <select name="category" id="categorySelect">
+                            <option value="">— выберите —</option>
+                        </select>
+                        <span class="field-error" data-for="category"></span>
+                    </label>
+
+                    <label>
+                        Приоритет
+                        <select name="priority" id="prioritySelect">
+                            <option value="">— выберите —</option>
+                        </select>
+                        <span class="field-error" data-for="priority"></span>
+                    </label>
+                </div>
+
+                <p class="sla-hint" id="slaHint"></p>
+
+                <div class="form-buttons">
+                    <button type="reset" class="btn gray">Очистить</button>
+                    <button type="submit" class="btn">Создать заявку</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="view" id="view-stats">
+            <div class="stat-cards" id="statCards"></div>
+
+            <div class="stat-blocks">
+                <div class="stat-block">
+                    <h3>По статусам</h3>
+                    <div id="statusBars"></div>
+                </div>
+                <div class="stat-block">
+                    <h3>По приоритетам</h3>
+                    <div id="priorityBars"></div>
+                </div>
+                <div class="stat-block">
+                    <h3>По категориям</h3>
+                    <div id="categoryBars"></div>
+                </div>
+            </div>
+
+            <button id="resetBtn" class="btn red">Сбросить данные к демо-набору</button>
+        </section>
+
+    </main>
+
+    <div class="overlay hidden" id="overlay">
+        <div class="modal" id="modal"></div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="logic.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
