@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кабинет преподавателя — Учебный портал</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="guard">
+  <header class="topbar">
+    <div class="brand"><span class="logo small">УП</span> Учебный портал</div>
+    <div class="topbar-right">
+      <div id="session-box" class="session-box">
+        Сессия: <span id="session-timer">--:--</span>
+        <button id="extend-btn" class="link-btn" hidden>Продлить</button>
+      </div>
+      <span id="user-name" class="user-name"></span>
+      <span id="user-role" class="badge"></span>
+      <button id="logout-btn" class="btn btn-light">Выйти</button>
+      <button id="logout-all-btn" class="btn btn-danger">Выйти со всех устройств</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Кабинет преподавателя</h2>
+      <dl class="profile">
+        <dt>ФИО</dt><dd id="p-name"></dd>
+        <dt>Логин</dt><dd id="p-login"></dd>
+        <dt>Вход выполнен</dt><dd id="p-login-at"></dd>
+        <dt>Активных сессий</dt><dd id="p-sessions"></dd>
+      </dl>
+    </section>
+
+    <section class="card">
+      <h2>Студенты</h2>
+      <table class="table">
+        <thead>
+          <tr><th>ФИО</th><th>Группа</th><th>Средний балл</th><th></th></tr>
+        </thead>
+        <tbody id="students-body"></tbody>
+      </table>
+      <div id="student-grades" class="sub-card" hidden>
+        <h3 id="sg-title"></h3>
+        <ul id="sg-list"></ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Добавить занятие</h2>
+      <form id="lesson-form" class="inline-form" novalidate>
+        <input id="l-date" type="date">
+        <input id="l-title" type="text" maxlength="120" placeholder="Тема занятия">
+        <input id="l-room" type="text" maxlength="10" placeholder="Аудитория">
+        <button class="btn btn-primary" type="submit">Добавить</button>
+      </form>
+      <p id="lesson-msg" class="form-msg"></p>
+    </section>
+
+    <section class="card">
+      <h2>Расписание занятий</h2>
+      <table class="table">
+        <thead>
+          <tr><th>Дата</th><th>Тема</th><th>Аудитория</th></tr>
+        </thead>
+        <tbody id="lessons-body"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <div id="modal" class="modal" hidden>
+    <div class="modal-box">
+      <p id="modal-text"></p>
+      <div class="modal-actions">
+        <button id="modal-cancel" class="btn btn-light">Отмена</button>
+        <button id="modal-ok" class="btn btn-primary">Да</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="expired" class="modal" hidden>
+    <div class="modal-box">
+      <h3>Сессия завершена</h3>
+      <p>Время сессии истекло. Сейчас вы будете перенаправлены на страницу входа.</p>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="js/server.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/teacher.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Личный кабинет — Учебный портал</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="guard">
+  <header class="topbar">
+    <div class="brand"><span class="logo small">УП</span> Учебный портал</div>
+    <div class="topbar-right">
+      <div id="session-box" class="session-box">
+        Сессия: <span id="session-timer">--:--</span>
+        <button id="extend-btn" class="link-btn" hidden>Продлить</button>
+      </div>
+      <span id="user-name" class="user-name"></span>
+      <span id="user-role" class="badge"></span>
+      <button id="logout-btn" class="btn btn-light">Выйти</button>
+      <button id="logout-all-btn" class="btn btn-danger">Выйти со всех устройств</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Профиль</h2>
+      <dl class="profile">
+        <dt>ФИО</dt><dd id="p-name"></dd>
+        <dt>Логин</dt><dd id="p-login"></dd>
+        <dt>Группа</dt><dd id="p-group"></dd>
+        <dt>Вход выполнен</dt><dd id="p-login-at"></dd>
+        <dt>Активных сессий</dt><dd id="p-sessions"></dd>
+      </dl>
+    </section>
+
+    <section class="card">
+      <h2>Расписание занятий</h2>
+      <table class="table">
+        <thead>
+          <tr><th>Дата</th><th>Тема</th><th>Аудитория</th></tr>
+        </thead>
+        <tbody id="lessons-body"></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Мои оценки</h2>
+      <table class="table">
+        <thead>
+          <tr><th>Занятие</th><th>Балл</th></tr>
+        </thead>
+        <tbody id="grades-body"></tbody>
+      </table>
+      <p class="muted">Средний балл: <b id="grades-avg">—</b></p>
+    </section>
+  </main>
+
+  <div id="modal" class="modal" hidden>
+    <div class="modal-box">
+      <p id="modal-text"></p>
+      <div class="modal-actions">
+        <button id="modal-cancel" class="btn btn-light">Отмена</button>
+        <button id="modal-ok" class="btn btn-primary">Да</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="expired" class="modal" hidden>
+    <div class="modal-box">
+      <h3>Сессия завершена</h3>
+      <p>Время сессии истекло. Сейчас вы будете перенаправлены на страницу входа.</p>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="js/server.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/cabinet.js"></script>
+</body>
+</html>

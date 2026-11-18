@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход — Учебный портал</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+  <main class="auth">
+    <form id="login-form" class="card auth-card" novalidate>
+      <div class="logo">УП</div>
+      <h1>Учебный портал</h1>
+      <p class="muted">Войдите, чтобы открыть личный кабинет</p>
+
+      <div id="notice" class="notice" hidden></div>
+
+      <label for="login">Логин</label>
+      <input id="login" name="login" type="text" autocomplete="username" maxlength="40" placeholder="Например, student1">
+      <span class="field-error" id="login-error"></span>
+
+      <label for="password">Пароль</label>
+      <div class="password-wrap">
+        <input id="password" name="password" type="password" autocomplete="current-password" maxlength="100" placeholder="Введите пароль">
+        <button type="button" id="toggle-password" class="link-btn">Показать</button>
+      </div>
+      <span class="field-error" id="password-error"></span>
+
+      <button type="submit" id="submit" class="btn btn-primary btn-block">Войти</button>
+      <p class="demo-note">Учебный прототип. Серверная часть имитируется в js/server.js</p>
+    </form>
+  </main>
+
+  <script src="js/server.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>
